@@ -27,7 +27,7 @@ class _AuthGuardState extends State<AuthGuard> {
     return Selector<AuthViewModel, bool>(
       selector: (context, viewModel) => viewModel.isAuthenticatied,
       builder: (context, isAuthenticatied, child) {
-        if (!isAuthenticatied) return const AuthScreen();
+        if (!isAuthenticatied) return AuthScreen();
         return const HomeScreen();
       },
     );
