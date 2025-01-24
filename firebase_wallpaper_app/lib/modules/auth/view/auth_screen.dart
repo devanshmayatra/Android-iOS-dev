@@ -1,4 +1,3 @@
-import 'package:firebase_wallpaper_app/modules/auth/view/widgets/login_field.dart';
 import 'package:firebase_wallpaper_app/modules/auth/view_model/auth_view_model.dart';
 import 'package:firebase_wallpaper_app/modules/register/view/register_screen.dart';
 import 'package:flutter/material.dart';
@@ -12,11 +11,13 @@ class AuthScreen extends StatefulWidget {
 }
 
 class _AuthScreenState extends State<AuthScreen> {
-  TextEditingController usernameController = TextEditingController();
+  TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
+    AuthViewModel authViewModel = context.watch<AuthViewModel>();
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('Login'),
@@ -39,7 +40,7 @@ class _AuthScreenState extends State<AuthScreen> {
                       SizedBox(
                         height: 50,
                         child: TextField(
-                          controller: usernameController,
+                          controller: emailController,
                           decoration: const InputDecoration(
                             labelText: "Enter your Username",
                             border: OutlineInputBorder(),
@@ -64,12 +65,10 @@ class _AuthScreenState extends State<AuthScreen> {
                       ),
                       ElevatedButton(
                         onPressed: () {
-                          context
-                              .read<AuthViewModel>()
-                              .loginWithEmailAndPassword(
-                                usernameController.text,
-                                passwordController.text,
-                              );
+                          authViewModel.loginWithEmailAndPassword(
+                            emailController.text,
+                            passwordController.text,
+                          );
                         },
                         child: const Text('Login with email'),
                       ),
@@ -82,7 +81,7 @@ class _AuthScreenState extends State<AuthScreen> {
                             MaterialPageRoute(
                               builder: (_) {
                                 return ChangeNotifierProvider.value(
-                                  value: context.read<AuthViewModel>(),
+                                  value: authViewModel,
                                   child: RegisterScreen(),
                                 );
                               },
@@ -107,9 +106,7 @@ class _AuthScreenState extends State<AuthScreen> {
                       ),
                       ElevatedButton(
                         onPressed: () {
-                          context
-                              .read<AuthViewModel>()
-                              .loginWithGoogleClickEvent();
+                          authViewModel.loginWithGoogleClickEvent();
                         },
                         child: const Text('Continue with Google'),
                       ),
@@ -122,6 +119,13 @@ class _AuthScreenState extends State<AuthScreen> {
         ),
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    emailController.dispose();
+    passwordController.dispose();
   }
 }
 

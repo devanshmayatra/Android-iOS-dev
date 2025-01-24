@@ -7,8 +7,8 @@ class Application extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const GlobalProvider(
-      child: MaterialAppWIdget(),
+    return GlobalProvider(
+      child: MaterialAppWidget(),
     );
   }
 }

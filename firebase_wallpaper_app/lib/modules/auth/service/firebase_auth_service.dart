@@ -39,15 +39,13 @@ class GoogleLoginService {
       return Right((userCredential.user!));
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
-        Left(("The password provided is too weak."));
+        return Left(("The password provided is too weak."));
       } else if (e.code == 'email-already-in-use') {
-        Left(("The account already exists for that email."));
+        return Left(("The account already exists for that email."));
+      } else {
+        return Left((e.message!));
       }
-    } catch (e) {
-      log(e as String);
-      return Left(("Some error Occured"));
     }
-    return Left(("Some error Occured"));
   }
 
   Future<Either<String, User>> loginWithEmailAndPassword(
@@ -65,11 +63,9 @@ class GoogleLoginService {
         return Left(("No user found for that email."));
       } else if (e.code == 'wrong-password') {
         return Left(("Wrong password provided for that user."));
+      } else {
+        return Left((e.message.toString()));
       }
-    } catch (e) {
-      return Left(("Some error Occured"));
     }
-
-    return Left(("Some error Occured"));
   }
 }
