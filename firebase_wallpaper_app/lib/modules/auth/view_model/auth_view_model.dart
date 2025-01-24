@@ -54,7 +54,6 @@ class AuthViewModel extends ChangeNotifier {
         showSnackBar("Login success from email and password");
       });
       isLoading = false;
-      log("Created account and Login success from email and password");
       notifyListeners();
     }
   }
@@ -69,9 +68,9 @@ class AuthViewModel extends ChangeNotifier {
         log('Error : $L');
         _error = L;
         _user = null;
+        showSnackBar("Error : $L");
       }, (R) {
-        log('User : $R');
-        log("Login success from email and password");
+        showSnackBar("Logged in Succesfully");
       });
       isLoading = false;
 

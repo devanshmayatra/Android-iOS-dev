@@ -69,7 +69,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                               passwordController.text,
                             );
                         if (usernameController.text != "" &&
-                            passwordController.text != "") {
+                            passwordController.text != "" &&
+                            context.watch<AuthViewModel>().error.isEmpty) {
                           Navigator.pop(context);
                         }
                       },

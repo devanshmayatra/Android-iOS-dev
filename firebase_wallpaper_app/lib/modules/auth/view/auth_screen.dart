@@ -1,5 +1,5 @@
 import 'package:firebase_wallpaper_app/modules/auth/view_model/auth_view_model.dart';
-import 'package:firebase_wallpaper_app/modules/register/view/register_screen.dart';
+import 'package:firebase_wallpaper_app/modules/auth/view/register_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
