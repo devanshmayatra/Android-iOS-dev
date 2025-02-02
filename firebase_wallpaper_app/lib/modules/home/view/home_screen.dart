@@ -19,14 +19,6 @@ class HomeScreen extends StatelessWidget {
         ],
       ),
       body: const HomeScreenBody(),
-      // Center(
-      //   child: ElevatedButton(
-      //     onPressed: () {
-      //       context.read<AuthViewModel>().logoutClickEvent();
-      //     },
-      //     child: const Text('Logout'),
-      //   ),
-      // ),
     );
   }
 }

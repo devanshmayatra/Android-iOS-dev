@@ -26,7 +26,14 @@ class AuthViewModel extends ChangeNotifier {
   }
 
   void getUser() async {
-    _user = (await _service.getUser()) as Right<String, User>?;
+    _user = (await _service.getUser());
+
+    _user!.fold((L) {
+      showSnackBar("Youre not logged in");
+      _user = null;
+    }, (R) {
+      log(_user.toString());
+    });
     notifyListeners();
   }
 

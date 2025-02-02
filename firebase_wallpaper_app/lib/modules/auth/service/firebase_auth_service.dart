@@ -7,8 +7,8 @@ class GoogleLoginService {
   final _googleSignIn = GoogleSignIn();
   final _firebaseAuth = FirebaseAuth.instance;
 
-  Future<User?> getUser() async {
-    return _firebaseAuth.currentUser;
+  Future<Either<String, User>> getUser() async {
+    return await Right((_firebaseAuth.currentUser!));
   }
 
   Future<Either<String, User>> signInWithGoogle() async {
