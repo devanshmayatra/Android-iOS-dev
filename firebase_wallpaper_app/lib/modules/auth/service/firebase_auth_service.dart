@@ -1,17 +1,17 @@
 import 'dart:core';
-import 'package:either_dart/either.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_wallpaper_app/shared/show_snackbar.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
-class GoogleLoginService {
+class FirebaseAuthService {
   final _googleSignIn = GoogleSignIn();
   final _firebaseAuth = FirebaseAuth.instance;
 
-  Future<Either<String, User>> getUser() async {
-    return await Right((_firebaseAuth.currentUser!));
+  User getUser() {
+    return _firebaseAuth.currentUser!;
   }
 
-  Future<Either<String, User>> signInWithGoogle() async {
+  Future<User> signInWithGoogle() async {
     final googleAccount = await _googleSignIn.signIn();
     final googleAuth = await googleAccount?.authentication;
     final credential = GoogleAuthProvider.credential(
@@ -19,14 +19,14 @@ class GoogleLoginService {
       idToken: googleAuth?.idToken,
     );
     final userCredential = await _firebaseAuth.signInWithCredential(credential);
-    return Right((userCredential.user!));
+    return userCredential.user!;
   }
 
   Future<void> logoutUser() async {
     await _firebaseAuth.signOut();
   }
 
-  Future<Either<String, User>> createUserWithEmailAndPassword(
+  Future<User?> createUserWithEmailAndPassword(
       String email, String password) async {
     try {
       UserCredential userCredential =
@@ -35,20 +35,20 @@ class GoogleLoginService {
         password: password,
       );
 
-      return Right((userCredential.user!));
+      return userCredential.user!;
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
-        return Left(("The password provided is too weak."));
+        showSnackBar("The password provided is too weak.");
       } else if (e.code == 'email-already-in-use') {
-        return Left(("The account already exists for that email."));
+        showSnackBar("The account already exists for that email.");
       } else {
-        return Left((e.message!));
+        showSnackBar(e.message!);
       }
     }
+    return null;
   }
 
-  Future<Either<String, User>> loginWithEmailAndPassword(
-      String email, String password) async {
+  Future<User?> loginWithEmailAndPassword(String email, String password) async {
     try {
       UserCredential userCredential =
           await _firebaseAuth.signInWithEmailAndPassword(
@@ -56,15 +56,16 @@ class GoogleLoginService {
         password: password,
       );
 
-      return Right((userCredential.user!));
+      return userCredential.user!;
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {
-        return Left(("No user found for that email."));
+        showSnackBar("No user found for that email.");
       } else if (e.code == 'wrong-password') {
-        return Left(("Wrong password provided for that user."));
+        showSnackBar("Wrong password provided for that user.");
       } else {
-        return Left((e.message.toString()));
+        showSnackBar(e.message.toString());
       }
     }
+    return null;
   }
 }

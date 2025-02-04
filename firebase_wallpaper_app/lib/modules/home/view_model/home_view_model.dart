@@ -1,5 +1,6 @@
-import 'package:firebase_wallpaper_app/modules/explore/view/explore_screen.dart';
+import 'package:firebase_wallpaper_app/modules/explore/view/explore_screen_provider.dart';
 import 'package:firebase_wallpaper_app/modules/favourites/view/favourite_screen.dart';
+import 'package:firebase_wallpaper_app/modules/favourites/view/favourite_view_provider.dart';
 import 'package:firebase_wallpaper_app/modules/home/model/bottom_nav_model.dart';
 import 'package:flutter/material.dart';
 
@@ -8,12 +9,12 @@ class HomeViewModel extends ChangeNotifier {
     BottomNavModel(
       name: 'Explore',
       icon: Icon(Icons.search),
-      page: ExploreScreen(),
+      page: ExplorePageProvider(),
     ),
     BottomNavModel(
       name: 'Favourites',
       icon: Icon(Icons.favorite),
-      page: FavouriteScreen(),
+      page: FavouriteViewProvider(),
     ),
   ];
 

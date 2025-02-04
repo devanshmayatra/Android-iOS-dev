@@ -1,3 +1,4 @@
+import 'package:firebase_wallpaper_app/modules/explore/view/widgtets/explore_screen_wallpaper_grid_view.dart';
 import 'package:flutter/material.dart';
 
 class ExploreScreen extends StatelessWidget {
@@ -5,8 +6,6 @@ class ExploreScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Center(
-      child: Text('Explore'),
-    );
+    return const ExploreScreenWallpaperGridView();
   }
 }

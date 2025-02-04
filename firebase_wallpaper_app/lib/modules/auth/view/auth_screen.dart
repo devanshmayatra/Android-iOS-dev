@@ -99,6 +99,7 @@ class _AuthScreenState extends State<AuthScreen> {
                     emailController.text,
                     passwordController.text,
                   );
+                  Navigator.pop(context);
                 },
                 child: Text(
                   'Login',

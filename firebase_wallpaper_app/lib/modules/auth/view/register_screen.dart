@@ -1,4 +1,3 @@
-import 'dart:developer';
 import 'package:firebase_wallpaper_app/modules/auth/view_model/auth_view_model.dart';
 import 'package:firebase_wallpaper_app/modules/theme/view_model/theme_view_model.dart';
 import 'package:flutter/material.dart';
@@ -100,6 +99,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     emailController.text,
                     passwordController.text,
                   );
+                  Navigator.pop(context);
                 },
                 child: Text(
                   'Sign up',

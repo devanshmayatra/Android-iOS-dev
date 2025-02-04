@@ -64,6 +64,8 @@ class DefaultFirebaseOptions {
     messagingSenderId: '1097717413230',
     projectId: 'fir-wallpaper-app-afcba',
     storageBucket: 'fir-wallpaper-app-afcba.firebasestorage.app',
+    androidClientId: '1097717413230-hhabuut9gs1cvkhn3qj60tu1flgh4b7i.apps.googleusercontent.com',
+    iosClientId: '1097717413230-h0pq6ku8g3q7gu144q96lqtkanflpvr4.apps.googleusercontent.com',
     iosBundleId: 'com.example.firebaseWallpaperApp',
   );
 
@@ -73,6 +75,8 @@ class DefaultFirebaseOptions {
     messagingSenderId: '1097717413230',
     projectId: 'fir-wallpaper-app-afcba',
     storageBucket: 'fir-wallpaper-app-afcba.firebasestorage.app',
+    androidClientId: '1097717413230-hhabuut9gs1cvkhn3qj60tu1flgh4b7i.apps.googleusercontent.com',
+    iosClientId: '1097717413230-h0pq6ku8g3q7gu144q96lqtkanflpvr4.apps.googleusercontent.com',
     iosBundleId: 'com.example.firebaseWallpaperApp',
   );
 
@@ -85,4 +89,5 @@ class DefaultFirebaseOptions {
     storageBucket: 'fir-wallpaper-app-afcba.firebasestorage.app',
     measurementId: 'G-HJ0KTZYH4R',
   );
+
 }
