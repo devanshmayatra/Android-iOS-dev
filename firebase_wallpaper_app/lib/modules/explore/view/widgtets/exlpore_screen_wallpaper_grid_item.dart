@@ -1,7 +1,4 @@
-import 'dart:developer';
-
 import 'package:firebase_wallpaper_app/modules/explore/model/wallpaper_data_model.dart';
-import 'package:firebase_wallpaper_app/modules/wallpaper/view/view_wallpaper.dart';
 import 'package:firebase_wallpaper_app/modules/wallpaper/view/wallpaper_provider.dart';
 import 'package:flutter/material.dart';
 

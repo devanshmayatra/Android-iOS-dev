@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:firebase_wallpaper_app/modules/wallpaper/view_model/wallpaper_view_model.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -13,7 +11,6 @@ class ToggleFavourite extends StatelessWidget {
       selector: (context, vm) => vm.isFavourite,
       builder: (context, isFavourite, child) {
         if (isFavourite == null) return const SizedBox();
-        log(isFavourite.toString());
         return IconButton(
           icon: Icon(
             isFavourite

@@ -14,5 +14,6 @@ class UserDatabaseService {
     } catch (e, s) {
       log('Error creating user: $e $s');
     }
+    return null;
   }
 }

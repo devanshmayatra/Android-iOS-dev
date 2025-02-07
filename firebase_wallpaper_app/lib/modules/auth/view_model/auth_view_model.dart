@@ -1,4 +1,3 @@
-import 'dart:developer';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_wallpaper_app/modules/auth/model/user_model.dart';
 import 'package:firebase_wallpaper_app/modules/auth/service/firebase_auth_service.dart';
@@ -22,10 +21,9 @@ class AuthViewModel extends ChangeNotifier {
     notifyListeners();
     _user = (await _service.signInWithGoogle());
     if (_user != null) {
-      final userModel = await _userService
-          .createUser(UserModel.fromFirebaseUser(_user! as User));
+      final userModel =
+          await _userService.createUser(UserModel.fromFirebaseUser(_user!));
     }
-    log('Login sucess : $_user');
     isLoading = false;
     notifyListeners();
   }

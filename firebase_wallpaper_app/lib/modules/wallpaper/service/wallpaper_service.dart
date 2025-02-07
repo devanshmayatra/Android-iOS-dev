@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_wallpaper_app/modules/auth/service/firebase_auth_service.dart';
 import 'package:firebase_wallpaper_app/modules/explore/model/wallpaper_data_model.dart';
@@ -22,7 +20,6 @@ class WallpaperService {
   Future<bool?> checkIsFavourite(WallpaperDataModel wallpaper) async {
     final ref = wallpaperRef(wallpaper);
     if (ref == null) {
-      log(ref.toString());
       return null;
     }
     ;

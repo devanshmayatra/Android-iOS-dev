@@ -26,13 +26,20 @@ class _ExploreScreenWallpaperGridViewState
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Selector<ExploreViewModel, List<WallpaperDataModel>>(
-        selector: (_, vm) => vm.wallpapers,
-        builder: (context, wallpapers, child) {
-          return WallpaperGrid(wallpapers: wallpapers);
-        },
-      ),
+    return Selector<ExploreViewModel, List<WallpaperDataModel>>(
+      selector: (_, vm) => vm.wallpapers,
+      builder: (context, wallpapers, child) {
+        return NotificationListener<ScrollNotification>(
+          onNotification: (notification) {
+            if (notification.metrics.pixels ==
+                notification.metrics.maxScrollExtent) {
+              context.read<ExploreViewModel>().fetchWallpaper();
+            }
+            return false;
+          },
+          child: WallpaperGrid(wallpapers: wallpapers),
+        );
+      },
     );
   }
 }
