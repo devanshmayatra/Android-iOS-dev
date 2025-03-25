@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_wallpaper_app/modules/auth/service/firebase_auth_service.dart';
 import 'package:firebase_wallpaper_app/modules/explore/model/wallpaper_data_model.dart';
 
@@ -22,12 +23,15 @@ class CollectionsService {
   }
 
   void createCollection(String collectionName, String status) async {
+    User currUser = _authService.getUser();
     DocumentReference<Map<String, dynamic>>? ref =
         collectionRef(collectionName, status);
     if (ref == null) return;
     await ref.set({
       'name': collectionName,
       'status': status,
+      'owner': currUser.uid,
+      'ownerName': currUser.displayName,
     });
   }
 
@@ -77,7 +81,8 @@ class CollectionsService {
     ref.set(wallpaper.toMap());
   }
 
-  getCollectionWallpapers(String name, String status) async {
+  Future<List<dynamic>?> getCollectionWallpapers(
+      String name, String status) async {
     final currUser = _authService.getUser();
     late final ref;
     if (currUser == null) return null;
@@ -95,5 +100,16 @@ class CollectionsService {
     return snapshot.docs
         .map((doc) => WallpaperDataModel.fromMap(doc.data()))
         .toList();
+  }
+
+  void removeWallpaperFromCollection(
+      Map collection, WallpaperDataModel wallpaper) async {
+    final currUser = _authService.getUser();
+    final ref =
+        setWallpaperref(collection["name"], collection["status"], wallpaper);
+    if (ref == null) return;
+    if (collection["owner"] == currUser.uid) {
+      await ref.delete();
+    }
   }
 }

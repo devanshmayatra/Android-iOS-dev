@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class WallpaperProvider extends StatelessWidget {
-  const WallpaperProvider({super.key, required this.wallpaper});
+  WallpaperProvider({super.key, required this.wallpaper, Map? collection});
 
   final WallpaperDataModel wallpaper;
 

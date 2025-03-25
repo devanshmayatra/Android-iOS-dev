@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 class WallpaperViewModel extends ChangeNotifier {
   WallpaperViewModel({required this.wallpaper});
   final WallpaperDataModel wallpaper;
+  // final Map collection;
 
   bool? isFavourite;
 

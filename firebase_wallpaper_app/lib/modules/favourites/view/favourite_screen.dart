@@ -29,6 +29,7 @@ class _FavouriteScreenState extends State<FavouriteScreen> {
           onRefresh: context.read<FavouriteViewModel>().fetchWallpapers,
           child: WallpaperGrid(
             wallpapers: wallpapers,
+            collection: {},
           ),
         );
       },

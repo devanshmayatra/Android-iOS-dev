@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:apis_user_app/view_models/users_view_model.dart';
 import 'package:apis_user_app/widgets/user_list_tile.dart';
 import 'package:apis_user_app/screens/view_user_screen.dart';
@@ -14,6 +16,16 @@ class UserList extends StatelessWidget {
       child: usersViewModel.users.isEmpty
           ? Center(child: Text("No Users"))
           : Expanded(
+              child: NotificationListener<ScrollNotification>(
+              onNotification: (notification) {
+                if (notification.metrics.pixels ==
+                    notification.metrics.maxScrollExtent) {
+                  log('reached at the end!');
+                  usersViewModel.getUsers("");
+                }
+
+                return false;
+              },
               child: ListView.separated(
                 itemCount: usersViewModel.users.length,
                 separatorBuilder: (BuildContext context, int index) =>
@@ -41,7 +53,7 @@ class UserList extends StatelessWidget {
                   );
                 },
               ),
-            ),
+            )),
     );
   }
 }

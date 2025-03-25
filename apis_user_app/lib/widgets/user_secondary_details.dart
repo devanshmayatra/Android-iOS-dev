@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'package:apis_user_app/models/user_details_model.dart';
 import 'package:flutter/material.dart';
 

@@ -3,9 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 
 class WallpaperGrid extends StatelessWidget {
-  const WallpaperGrid({super.key, required this.wallpapers});
+  WallpaperGrid({super.key, required this.wallpapers, required Map collection});
 
   final List wallpapers;
+  final Map collection = {};
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +17,8 @@ class WallpaperGrid extends StatelessWidget {
       ),
       itemBuilder: (context, index) {
         final wallpaper = wallpapers[index];
-        return ExlporeScreenWallpaperGridItem(wallpaper: wallpaper);
+        return ExlporeScreenWallpaperGridItem(
+            wallpaper: wallpaper, collection: collection);
       },
     );
   }

@@ -35,7 +35,8 @@ class CollectionDetails extends StatelessWidget {
                 }
                 return false;
               },
-              child: WallpaperGrid(wallpapers: wallpapers),
+              child:
+                  WallpaperGrid(wallpapers: wallpapers, collection: collection),
             );
           },
         ),

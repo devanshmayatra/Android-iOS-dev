@@ -2,10 +2,13 @@ import 'package:firebase_wallpaper_app/modules/explore/model/wallpaper_data_mode
 import 'package:firebase_wallpaper_app/modules/wallpaper/view/wallpaper_provider.dart';
 import 'package:flutter/material.dart';
 
+// ignore: must_be_immutable
 class ExlporeScreenWallpaperGridItem extends StatelessWidget {
-  const ExlporeScreenWallpaperGridItem({super.key, required this.wallpaper});
+  ExlporeScreenWallpaperGridItem(
+      {super.key, required this.wallpaper, required collection});
 
   final WallpaperDataModel wallpaper;
+  Map? collection;
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +17,8 @@ class ExlporeScreenWallpaperGridItem extends StatelessWidget {
         Navigator.of(context).push(
           MaterialPageRoute(
             builder: (context) {
-              return WallpaperProvider(wallpaper: wallpaper);
+              return WallpaperProvider(
+                  wallpaper: wallpaper, collection: collection);
             },
           ),
         );

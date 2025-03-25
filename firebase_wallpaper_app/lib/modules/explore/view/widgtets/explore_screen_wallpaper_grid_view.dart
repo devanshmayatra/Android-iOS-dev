@@ -37,7 +37,10 @@ class _ExploreScreenWallpaperGridViewState
             }
             return false;
           },
-          child: WallpaperGrid(wallpapers: wallpapers),
+          child: WallpaperGrid(
+            wallpapers: wallpapers,
+            collection: {},
+          ),
         );
       },
     );
